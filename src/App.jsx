@@ -3,6 +3,7 @@ import Meals from "./components/Meals";
 import Modal from "./components/Modal";
 
 function App() {
+
   return (
     <>
       <Modal />
