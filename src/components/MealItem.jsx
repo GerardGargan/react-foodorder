@@ -1,7 +1,7 @@
 export default function MealItem({id, name, description, price, image, handleAddToCart}) {
     const imageUrl = "http://localhost:3000/"+image;
     return (
-        <div className="meal-item">
+        <li className="meal-item" key={id}>
             <article>
                 <img src={imageUrl} />
                 <h3>{name}</h3>
@@ -13,6 +13,6 @@ export default function MealItem({id, name, description, price, image, handleAdd
                     <button className="button" onClick={() => handleAddToCart(id)}>Add to Cart</button>
                 </div>
             </article>
-        </div>
+        </li>
     );
 }

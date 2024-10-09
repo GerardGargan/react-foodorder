@@ -29,7 +29,7 @@ export default function Meals() {
     }
 
     return (
-        <main id="meals">
+        <ul id="meals">
             {isFetching && <p>Fetching available meals...</p>}
             {isError && <p>{isError.message}</p>}
             {(!isFetching && !isError) && 
@@ -47,6 +47,6 @@ export default function Meals() {
                 })}
             </>)
             } 
-        </main>
+        </ul>
     );
 }
