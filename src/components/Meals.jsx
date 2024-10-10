@@ -37,11 +37,7 @@ export default function Meals() {
                 {availableMeals.map(meal => {
                     return <MealItem 
                     key={meal.id}
-                    id={meal.id}
-                    name={meal.name}
-                    description={meal.description}
-                    price={meal.price}
-                    image={meal.image}
+                    meal={meal}
                     handleAddToCart={handleAddToCart}
                     />
                 })}
