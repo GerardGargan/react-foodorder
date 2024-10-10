@@ -1,4 +1,6 @@
 import headerImg from '../assets/logo.jpg';
+import Button from './UI/Button';
+
 export default function Header() {
     return (
         <header id="main-header">
@@ -6,7 +8,7 @@ export default function Header() {
                 <img src={headerImg} />
                 <h1>REACTFOOD</h1>
             </div>
-            <button className='cart-item-actions'>Cart (0)</button>
+            <Button textOnly>Cart (0)</Button>
         </header>
     );
 }
