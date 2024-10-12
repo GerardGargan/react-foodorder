@@ -37,14 +37,14 @@ function cartReducer(state, action) {
         );
 
         const existingCartItem = state.items[existingCartItemIndex];
-
+        let updatedItems = null;
         if(existingCartItem.quantity === 1) {
             // remove item
-            const updatedItems = state.items.filter((item) => item.id !== action.id);
+            updatedItems = state.items.filter((item) => item.id !== action.id);
         } else {
             // decrement by 1
             const updatedItem = { ...existingCartItem, quantity: existingCartItem.quantity -1 }
-            const updatedItems = [...state.items];
+            updatedItems = [...state.items];
             updatedItems[existingCartItemIndex] = updatedItem;
         }
 
