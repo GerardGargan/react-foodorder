@@ -1,48 +1,34 @@
-import { useState, useEffect } from "react";
 import MealItem from "./MealItem";
-import { fetchAvailableMeals } from "../http";
+import useHttp from "../hooks/useHttp";
+
+const requestConfig = {};
 
 export default function Meals() {
+  const {
+    data: availableMeals,
+    error: isError,
+    isLoading,
+  } = useHttp("http://localhost:3000/meals", requestConfig, []);
 
-    const [availableMeals, setAvailableMeals] = useState([]);
-    const [isFetching, setIsFetching] = useState(false);
-    const [isError, setIsError] = useState();
-  
-    useEffect(() => {
-      async function fetchMeals() {
-        setIsFetching(true);
-        try {
-          const meals = await fetchAvailableMeals();
-          setAvailableMeals(meals);
-        } catch (error) {
-          setIsError({message: error.message || 'Error fetching data'});
-        }
-        setIsFetching(false);
-      }
-  
-      fetchMeals();
-    }, []);
+  function handleAddToCart(id) {
+    console.log("adding id: " + id + " to cart");
+  }
 
-    function handleAddToCart(id) {
-        console.log("adding id: "+id+" to cart");
-        
-    }
+  if(isLoading) {
+    return <p>Fetching meals...</p>
+  }
 
-    return (
-        <ul id="meals">
-            {isFetching && <p>Fetching available meals...</p>}
-            {isError && <p>{isError.message}</p>}
-            {(!isFetching && !isError) && 
-            (<>
-                {availableMeals.map(meal => {
-                    return <MealItem 
-                    key={meal.id}
-                    meal={meal}
-                    handleAddToCart={handleAddToCart}
-                    />
-                })}
-            </>)
-            } 
-        </ul>
-    );
+  return (
+    <ul id="meals">
+      {availableMeals.map((meal) => {
+        return (
+          <MealItem
+            key={meal.id}
+            meal={meal}
+            handleAddToCart={handleAddToCart}
+          />
+        );
+      })}
+    </ul>
+  );
 }
