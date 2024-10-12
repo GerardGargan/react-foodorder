@@ -14,6 +14,7 @@ export default function Cart() {
 
     function handleCloseCart() {
         userProgressCtx.hideCart();
+        console.log('fired')
     }
 
     function handleShowCheckout() {
@@ -21,7 +22,7 @@ export default function Cart() {
     }
 
     return (
-        <Modal className="cart" open={userProgressCtx.progress === 'cart'} onClose={userProgressCtx === 'cart' ? handleCloseCart : null}>
+        <Modal className="cart" open={userProgressCtx.progress === 'cart'} onClose={userProgressCtx.progress === 'cart' ? handleCloseCart : null}>
             <h2>Your Cart</h2>
             <ul>
                 {cartCtx.items.map((item) => 
